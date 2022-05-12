@@ -11,4 +11,5 @@
         pwd
         ls ~/.gaiad
         gaiad version
-
+      environment:
+        PATH: ~/.gaiad/cosmovisor/current/bin:{{ ansible_env.PATH }}
