@@ -3,8 +3,11 @@
     localhost
   connection: local
   tasks:
-    - name: get python version
+    - name: get gaia version
       become_user: gaia
       shell: |
+        whoami
+        pwd
+        ls ~/.gaiad
         gaiad version
 
