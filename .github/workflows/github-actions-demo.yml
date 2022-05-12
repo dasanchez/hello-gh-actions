@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run playbook
         run: |
-          ansible-playbook src/playbook.yml
+          ansible-playbook gaia.yml -i src/theta.yml
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
 
