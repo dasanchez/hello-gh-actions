@@ -1,0 +1,10 @@
+- name: Run gaia
+  hosts:
+    localhost
+  connection: local
+  tasks:
+    - name: get python version
+      become_user: gaia
+      shell: |
+        gaiad version
+

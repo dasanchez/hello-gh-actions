@@ -25,10 +25,7 @@ jobs:
       - name: Get gaia status
         run: |
           sleep 30
-          sudo su gaia
-          gaiad status &> status.json
-          jq '.SyncInfo' status.json
-          exit
+          ansible-playbook src/gaia-test.yml
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
 # name: Explore GitHub Actions
