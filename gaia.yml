@@ -3,4 +3,5 @@
 - hosts: gaia
   become: true
   roles:
-  - gaia
+    - gaia
+  connection: local
