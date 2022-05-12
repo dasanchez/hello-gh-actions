@@ -21,14 +21,14 @@ jobs:
           pip install -r requirements.txt
       - name: Run playbook
         run: |
-          ansible-playbook gaia.yml -i src/theta.yml
+          ansible-playbook gaia.yml -i src/local-net.yml
       - name: Get gaia status
         run: |
           sleep 30
-          sudo apt install jq
           sudo su gaia
           gaiad status &> status.json
           jq '.SyncInfo' status.json
+          exit
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
 # name: Explore GitHub Actions
