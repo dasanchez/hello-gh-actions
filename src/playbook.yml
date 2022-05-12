@@ -1,0 +1,10 @@
+- name: test playbook
+  hosts: localhost
+  tasks:
+    - name: get python version
+      shell: |
+        echo $(python --version)
+      register: result
+    - name: print python version
+      debug:
+        msg: The Python version is {{ result.stdout.replace('Python ', '') }}
