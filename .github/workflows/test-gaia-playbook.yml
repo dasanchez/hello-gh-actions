@@ -25,7 +25,7 @@ jobs:
       - name: Get gaia status
         run: |
           sleep 30
-          apt install jq
+          sudo apt install jq
           su gaia
           gaiad status &> status.json
           jq '.SyncInfo' status.json
