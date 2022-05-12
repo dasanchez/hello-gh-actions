@@ -1,7 +1,7 @@
-name: Run Ansible Playbook
+name: Explore GitHub Actions
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Run Ansible Playbook:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run playbook
         run: |
-          ansible-playbook -i src/playbook.yml
+          ansible-playbook src/playbook.yml
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
 
