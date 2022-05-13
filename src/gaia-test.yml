@@ -4,6 +4,17 @@
   connection: local
   become: true
   tasks:
+    - name: get gaia version
+      become_user: gaia
+      environment:
+        PATH: /home/gaia/.gaiad/cosmovisor/current/bin:{{ ansible_env.PATH }}
+      shell: |
+        gaiad version
+      register: version
+      ignore_errors: true
+    - name: print gaia version
+      debug:
+        msg: Gaia version is {{ version.stderr }}
     - name: get gaia status
       become_user: gaia
       environment:
@@ -12,7 +23,7 @@
         gaiad status
       register: status
       ignore_errors: true
-    - name: print gaia version
+    - name: print gaia status
       debug:
         msg: The status is {{ status.stderr }}
       
