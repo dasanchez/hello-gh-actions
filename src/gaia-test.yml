@@ -11,7 +11,8 @@
       shell: |
         gaiad status
         register: status
+      ignore_errors: true
     - name: print gaia version
       debug:
-        msg: The status is {{ status.stdout }}
+        msg: The status is {{ status.stderr }}
       
