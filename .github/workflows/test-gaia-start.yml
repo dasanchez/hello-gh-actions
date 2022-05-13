@@ -2,12 +2,13 @@ name: Test Gaia Playbook
 on: [push]
 jobs:
   build:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         gaia_version: [v7.0.0,v7.0.1]
-    runs-on: ubuntu-latest
-  steps:
-    - run: echo "Using gaia version"
+
+    steps:
+      - run: echo "Using gaia version ${{ matrix.gaia_version}}"
 
     # runs-on: ubuntu-latest
     # steps:
