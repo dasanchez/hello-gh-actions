@@ -4,7 +4,8 @@ jobs:
   build:
     strategy:
       matrix:
-        gaia_version: ['v7.0.0','v7.0.1']
+        gaia_version: [v7.0.0,v7.0.1]
+    runs-on: ubuntu-latest
   steps:
     - run: echo "Using gaia version"
 
