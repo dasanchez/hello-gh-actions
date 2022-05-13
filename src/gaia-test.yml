@@ -10,7 +10,7 @@
         PATH: /home/gaia/.gaiad/cosmovisor/current/bin:{{ ansible_env.PATH }}
       shell: |
         gaiad status
-        register: status
+      register: status
       ignore_errors: true
     - name: print gaia version
       debug:
