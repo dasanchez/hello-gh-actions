@@ -6,7 +6,7 @@ jobs:
       matrix:
         gaia_version: ['v7.0.0','v7.0.1']
   steps:
-    - run: echo "Using gaia version ${{ matrix.gaia_version }}
+    - run: echo "Using gaia version ${{ matrix.gaia_version }}"
     # runs-on: ubuntu-latest
     # steps:
     #   - name: Check out repository code
