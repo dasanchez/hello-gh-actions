@@ -19,18 +19,20 @@ jobs:
         id: generate-start
         run: |
           start=$(src/generate_version_matrix.py)
-          echo ::set-output name=start_versions::$output
+          echo ::set-output name=start_versions::$start
+          upgrade=$(src/generate_upgrade_matrix.py)
+          echo ::set-output name=upgrade_versions::$upgrade
       - run: echo "🍏 This job's status is ${{ job.status }}."
     outputs:
       start_versions: ${{ steps.generate-start.outputs.start_versions }}
-      # upgrade_versions: ${{ steps.generate-matrices.outputs.upgrade_versions }}
+      upgrade_versions: ${{ steps.generate-matrices.outputs.upgrade_versions }}
   test-start:
     runs-on: ubuntu-latest
     needs: matrices
     strategy:
       matrix:
         ${{ fromJSON(needs.matrices.outputs.start_versions) }}
-        # ${{ fromJSON(needs.matrices.outputs.upgrade_versions) }}
+        ${{ fromJSON(needs.matrices.outputs.upgrade_versions) }}
         # gaia_version: ${{ needs.generate_matrix.outputs.start_versions }}
     steps:
       - run: echo "Version ${{matrix.gaia_version}}"
