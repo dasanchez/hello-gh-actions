@@ -18,7 +18,7 @@ jobs:
       - name: Generate start versions
         id: generate-start
         run: |
-          src/generate_version.matrix.py
+          src/generate_version_matrix.py
       - run: echo "🍏 This job's status is ${{ job.status }}."
     outputs:
       start_versions: ${{ steps.generate_start.outputs.generate_matrix }}
