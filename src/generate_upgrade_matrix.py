@@ -31,4 +31,5 @@ includes = []
 for version, upgrades in matrix.items():
     for upgrade in upgrades:
         includes.append({'gaia_version':version, 'upgrade_version':upgrade})
-print(includes)
+upgrade_json = json.dumps({'include': includes})
+print(upgrade_json)
