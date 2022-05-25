@@ -19,15 +19,15 @@ jobs:
         id: generate-start
         run: |
           output=$(src/generate_version_matrix.py)
-          echo "::set-output name=start_versions::$output"
+          echo ::set-output name=start_versions::$output
       - run: echo "🍏 This job's status is ${{ job.status }}."
     outputs:
-      start_versions: ${{ steps.generate_start.outputs.start_versions }}
+      start_versions: ${{ steps.generate-start.outputs.start_versions }}
   use-matrix:
     runs-on: ubuntu-latest
     needs: generate-matrix
     steps:
-      - run: echo ${{ needs.generate_matrix.outputs.start_versions }}
+      - run: echo ${{ fromJSON(needs.generate_matrix.outputs.start_versions) }}
     # strategy:
       # matrix:
         # gaia_version: ${{ needs.generate_matrix.outputs.start_versions }}
