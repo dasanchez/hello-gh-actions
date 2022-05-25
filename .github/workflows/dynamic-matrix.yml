@@ -18,10 +18,11 @@ jobs:
       - name: Generate start versions
         id: generate-start
         run: |
-          src/generate_version_matrix.py
+          output=$(src/generate_version_matrix.py)
+          echo "::set-output name=start_versions::$output"
       - run: echo "🍏 This job's status is ${{ job.status }}."
     outputs:
-      start_versions: ${{ steps.generate_start.outputs.generate_matrix }}
+      start_versions: ${{ steps.generate_start.outputs.start_versions }}
   use-matrix:
     runs-on: ubuntu-latest
     needs: generate-matrix
