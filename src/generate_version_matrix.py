@@ -8,16 +8,13 @@ import json
 # For testing, lest's use a JSON file instead
 with open('src/releases.json', 'r') as releases_file:
     releases_list = json.load(releases_file)
-# print(f'Found {len(releases_list)} releases.')
 
 # Trim list to only releases from 6.0.4 onwards
 post_604_releases = [release for release in releases_list if \
     (int(release['name'][1])==6 and int(release['name'][5])==4) or \
     int(release['name'][1]) > 6]
-# print(f'Trimmed list to {len(post_604_releases)} releases by starting with v6.0.4.')
 
 start_json = json.dumps({'gaia_version':[rel['name'] for rel in post_604_releases]})
-
 print(start_json)
 
 # print(f'Start versions JSON: {start_json}')
