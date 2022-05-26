@@ -20,7 +20,6 @@ jobs:
         run: |
           start=$(src/generate_version_matrix.py)
           echo ::set-output name=start_versions::$start
-      - run: echo ${{ generate-start.outputs.start_versions }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
     outputs:
