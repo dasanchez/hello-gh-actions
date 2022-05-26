@@ -41,7 +41,7 @@ jobs:
       - run: echo "Version ${{matrix.gaia_version}}"
   test-upgrade:
     runs-on: ubuntu-latest
-    needs: matrices
+    needs: generate-matrices
     strategy:
       matrix:
         ${{ fromJSON(needs.generate-matrices.outputs.upgrade_versions) }}
