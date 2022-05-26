@@ -3,10 +3,6 @@
 import requests
 import json
 
-# For testing, use a JSON file instead
-# with open('src/releases.json', 'r') as releases_file:
-    # releases_list = json.load(releases_file)
-
 # Read in releases from GitHub API
 releases_list = requests.get('https://api.github.com/repos/cosmos/gaia/releases').json()
 
