@@ -24,7 +24,6 @@ jobs:
 
     outputs:
       start_versions: ${{ steps.generate-start.outputs.start_versions }}
-      upgrade_versions: ${{ steps.generate-matrices.outputs.upgrade_versions }}
   test-start:
     runs-on: ubuntu-latest
     needs: matrices
