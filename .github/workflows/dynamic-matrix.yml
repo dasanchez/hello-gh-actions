@@ -15,15 +15,22 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
-      - name: Generate outputs
+      - name: Generate starting versions
         id: generate-start
         run: |
           start=$(src/generate_version_matrix.py)
+          echo $start
           echo ::set-output name=start_versions::$start
+      - name: Generate upgrade versions
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
+        id: generate-upgrade
+        run: |
+          upgrade=$(src/generate_upgrade_matrix.py)
+          echo $upgrade
+          echo ::set-output name=upgrade_versions::$upgrade
     outputs:
       start_versions: ${{ steps.generate-start.outputs.start_versions }}
+      upgrade_versions: ${{ steps.generate-upgrade.outputs.upgrade_versions }}
   test-start:
     runs-on: ubuntu-latest
     needs: matrices
