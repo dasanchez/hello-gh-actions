@@ -1,0 +1,14 @@
+---
+# yamllint disable rule:line-length
+all:
+  vars:
+    gaiad_home_autoclear: true
+    gaiad_version: v7.0.0
+    gaiad_create_validator: true
+    reboot: false
+  children:
+    gaia:
+      hosts:
+        localhost:
+          fast_sync: false
+          chain_id: my-testnet
