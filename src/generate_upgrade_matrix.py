@@ -3,10 +3,8 @@
 import requests
 import json
 
-# Read in releases from GitHub API
-
-# For testing, lest's use a JSON file instead
-with open('src/releases.json', 'r') as releases_file:
+# Read JSON output from generate_start_matrix.py
+with open('releases.json', 'r') as releases_file:
     releases_list = json.load(releases_file)
 
 # Trim list to only releases from 6.0.4 onwards

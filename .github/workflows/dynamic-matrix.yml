@@ -45,7 +45,6 @@ jobs:
     strategy:
       matrix:
         ${{ fromJSON(needs.matrices.outputs.upgrade_versions) }}
-        # gaia_version: ${{ needs.generate_matrix.outputs.start_versions }}
     steps:
       - run: echo "Upgrade ${{matrix.gaia_version}} to ${{matrix.upgrade_version}}"
   
