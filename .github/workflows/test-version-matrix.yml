@@ -4,7 +4,6 @@ jobs:
   generate-matrices:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Using gaia version ${{ matrix.gaia_version}}"
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Set up Python
