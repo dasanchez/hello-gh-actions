@@ -22,12 +22,12 @@ jobs:
           echo $start
           echo ::set-output name=start_versions::$start
       - name: Generate upgrade versions
-      - run: echo "🍏 This job's status is ${{ job.status }}."
         id: generate-upgrade
         run: |
           upgrade=$(src/generate_upgrade_matrix.py)
           echo $upgrade
           echo ::set-output name=upgrade_versions::$upgrade
+      - run: echo "🍏 This job's status is ${{ job.status }}."
     outputs:
       start_versions: ${{ steps.generate-start.outputs.start_versions }}
       upgrade_versions: ${{ steps.generate-upgrade.outputs.upgrade_versions }}
