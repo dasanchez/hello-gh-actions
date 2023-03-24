@@ -62,7 +62,7 @@ jobs:
         with:
           artifacts: "~/gaiad-linux-nightly"
           name: "Snapshots for Linux"
-          bodyFile: .github/workflows/linux_release_body.md
+          bodyFile: .github/workflows/linux-release-body.md
           prerelease: true
           replacesArtifacts: false
           allowUpdates: false
