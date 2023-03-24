@@ -37,10 +37,11 @@ jobs:
           cd gaia
           git checkout release/v9.0.x
           make build
+          cp build/gaiad ~/gaiad-linux-nightly
       
-      - name: Print Gaia version
+      - name: Print gaia version
         run: |
-          ~/gaia/build/gaiad version
+          ~/gaiad-linux-nightly version
           
       # - name: Upload assets
       #   uses: actions/upload-artifact@v3
