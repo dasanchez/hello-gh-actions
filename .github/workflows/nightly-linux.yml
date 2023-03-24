@@ -9,8 +9,8 @@ jobs:
     name: Build on Linux
     runs-on: ubuntu-latest
     steps:
-      # - name: Check out repo
-      #   uses: actions/checkout@v3
+      - name: Check out repo
+        uses: actions/checkout@v3
 
       - name: Install tools
         run: |
