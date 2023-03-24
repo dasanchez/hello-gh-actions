@@ -23,7 +23,7 @@ jobs:
 
       - name: Setup environment
         run: |
-          sudo apt install build-essential curl jq wget -y
+          sudo apt install build-essential wget -y
 
       - name: Install golang
         run: |
@@ -37,12 +37,31 @@ jobs:
           cd gaia
           git checkout release/v9.0.x
           make build
-          echo ~/.gaia/build/gaiad version
+          echo ~/gaia/build/gaiad version
+          mv ~/gaia/build/gaiad ~/gaiad-linux-nightly
 
-      - name: Upload assets
-        uses: actions/upload-artifact@v3
+      # - name: Upload assets
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: gaia-linux-ubuntu-latest
+      #     path: ./gaia/build/
+
+      # Publishing the release
+      - name: Remove old releases
+        uses: dev-drprasad/delete-older-releases@v0.2.1
         with:
-          name: gaia-linux-ubuntu-latest
-          path: ./gaia/build/
+          keep_latest: 0
+          delete_tag_pattern: "linux"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "~/gaiad-linux-nightly"
+          name: "Snapshots for Linux"
+          bodyFile: .github/workflows/lin_rel_body.md
+          prerelease: true
+          replacesArtifacts: false
+          allowUpdates: false
+          tag: linux
+          token: ${{ secrets.GITHUB_TOKEN }}
