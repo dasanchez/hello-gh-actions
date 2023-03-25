@@ -1,4 +1,4 @@
-## Latest Linux Snapshot
+## Latest Gaia release
 
-Linux binaries are built to branch `release/v9.0.x`.
+Binaries are built to the latest commit from branch `release/v9.0.x`.
 
