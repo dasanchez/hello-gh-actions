@@ -18,8 +18,8 @@ jobs:
           echo "sha=$commit" >> "$GITHUB_OUTPUT"
       - name: Print variable
         run: |
-        env | grep OUTPUT
-        echo "$commit"
+          env | grep OUTPUT
+          echo "$commit"
 
   print_remote_commit:
     name: Print remote commit
