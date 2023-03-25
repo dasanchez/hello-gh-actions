@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: collect_remote_commit
     steps:
+      - name: Print output from previous job
       - env:
         REMOTE_SHA: ${{ needs.collect_remote_commit.outputs.sha }}
-      - name: Print output from previous job
         run: |
           echo "$REMOTE_SHA"
 
