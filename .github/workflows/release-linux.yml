@@ -22,8 +22,8 @@ jobs:
     needs: collect_remote_commit
     steps:
       - name: Print output from previous job
-      - env:
-        REMOTE_SHA: ${{ needs.collect_remote_commit.outputs.sha }}
+        env:
+          REMOTE_SHA: ${{ needs.collect_remote_commit.outputs.sha }}
         run: |
           echo "$REMOTE_SHA"
 
