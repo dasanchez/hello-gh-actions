@@ -79,16 +79,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Add commit to release page
-        env:
-          REMOTE_SHA: ${{needs.collect_remote_commit.outputs.sha}}
-        run: | 
-          echo "Commit: $REMOTE_SHA" >> .github/workflows/linux-release-body.md
+      # - name: Add commit to release page
+      #   env:
+      #     REMOTE_SHA: ${{needs.collect_remote_commit.outputs.sha}}
+      #   run: | 
+      #     echo "Commit: $REMOTE_SHA" >> .github/workflows/linux-release-body.md
 
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "~/gaiad-linux-nightly"
-          name: "Snapshots for Linux"
+          name: ${{needs.collect_remote_commit.outputs.sha}}
           bodyFile: .github/workflows/linux-release-body.md
           prerelease: true
           replacesArtifacts: false
