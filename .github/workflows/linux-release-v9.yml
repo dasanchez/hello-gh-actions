@@ -81,12 +81,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Add commit to release page
-      #   env:
-      #     REMOTE_SHA: ${{needs.collect_remote_commit.outputs.sha}}
-      #   run: | 
-      #     echo "Commit: $REMOTE_SHA" >> .github/workflows/linux-release-body.md
-
       - name: Add release
         uses: ncipollo/release-action@v1
         with:
