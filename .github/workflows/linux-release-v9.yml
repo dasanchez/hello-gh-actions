@@ -3,7 +3,9 @@ name: v9 Release Linux Build
 on:  
   push:
   workflow_dispatch:
-  
+  schedule:
+    - cron: '0 0 * * *'  # run once a day
+
 jobs:
   collect_remote_commit:
     name: Read latest release branch commit
