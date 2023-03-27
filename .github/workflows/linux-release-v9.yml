@@ -1,4 +1,4 @@
-name: v9 Release Linux Build
+name: Linux Build v9 Release
 
 on:  
   push:
