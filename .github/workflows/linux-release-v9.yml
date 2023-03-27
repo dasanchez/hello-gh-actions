@@ -55,7 +55,7 @@ jobs:
 
       - name: Install golang
         run: |
-          wget https://go.dev/dl/go1.18.5.linux-amd64.tar.gz
+          wget -q https://go.dev/dl/go1.18.5.linux-amd64.tar.gz
           sudo tar -C /usr/local -xzf go1.18.5.linux-amd64.tar.gz
 
       - name: Clone and build Gaia
@@ -91,7 +91,7 @@ jobs:
         with:
           artifacts: "~/gaiad-linux"
           name: ${{needs.collect_remote_commit.outputs.sha}}
-          bodyFile: .github/workflows/release-v9-body.md
+          bodyFile: .github/workflows/linux-release-v9-body.md
           prerelease: true
           replacesArtifacts: false
           allowUpdates: false
