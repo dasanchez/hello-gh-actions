@@ -1,4 +1,4 @@
-name: Build Linux Release
+name: Linux Build: v9 Release
 
 on:  
   push:
@@ -76,7 +76,7 @@ jobs:
         uses: dev-drprasad/delete-older-releases@v0.2.1
         with:
           keep_latest: 0
-          delete_tag_pattern: "linux"
+          delete_tag_pattern: "linux-release-v9"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -91,9 +91,9 @@ jobs:
         with:
           artifacts: "~/gaiad-linux"
           name: ${{needs.collect_remote_commit.outputs.sha}}
-          bodyFile: .github/workflows/linux-release-body.md
+          bodyFile: .github/workflows/release-v9-body.md
           prerelease: true
           replacesArtifacts: false
           allowUpdates: false
-          tag: linux
+          tag: "linux-release-v9"
           token: ${{ secrets.GITHUB_TOKEN }}
