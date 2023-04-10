@@ -95,10 +95,6 @@ toml set --toml-path $HOME_1/config/config.toml p2p.persistent_peers $PEERS
 toml set --toml-path $HOME_1/config/config.toml p2p.allow_duplicate_ip true
 toml set --toml-path $HOME_2/config/config.toml p2p.allow_duplicate_ip true
 
-cd $HOME_1
-pwd
-cat $HOME_1/config/genesis.json
-
 # Copy genesis file to the other validators
 cp $HOME_1/config/genesis.json $HOME_2/config/genesis.json
 
@@ -112,7 +108,7 @@ echo "After=network-online.target"          | sudo tee /etc/systemd/system/$PROV
 echo ""                                     | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "[Service]"                            | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "User=$USER"                            | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
-echo "ExecStart=$HOME/go/bin/$CHAIN_BINARY start --x-crisis-skip-assert-invariants --home $HOME/.$MONIKER_1" | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
+echo "ExecStart=$HOME/go/bin/$CHAIN_BINARY start --x-crisis-skip-assert-invariants --home $HOME_1" | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "Restart=no"                       | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "LimitNOFILE=4096"                     | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo ""                                     | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
@@ -127,7 +123,7 @@ echo "After=network-online.target"          | sudo tee /etc/systemd/system/$PROV
 echo ""                                     | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
 echo "[Service]"                            | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
 echo "User=$USER"                            | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
-echo "ExecStart=$HOME/go/bin/$CHAIN_BINARY start --x-crisis-skip-assert-invariants --home $HOME/.$MONIKER_1" | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
+echo "ExecStart=$HOME/go/bin/$CHAIN_BINARY start --x-crisis-skip-assert-invariants --home $HOME_2" | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
 echo "Restart=no"                       | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
 echo "LimitNOFILE=4096"                     | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
 echo ""                                     | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
