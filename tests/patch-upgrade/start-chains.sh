@@ -140,3 +140,7 @@ sudo systemctl enable $PROVIDER_SERVICE_2 --now
 # echo "journalctl -fu $PROVIDER_SERVICE_2"
 # echo "***********************"
 
+echo "Waiting for chains to start and endpoints to become available..."
+sleep 25
+
+$CHAIN_BINARY status --home $HOME_1
