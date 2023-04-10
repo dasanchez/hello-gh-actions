@@ -82,7 +82,6 @@ jobs:
       MONIKER_2: ${{ vars.MONIKER_2 }}
       MNEMONIC_1: ${{ vars.MNEMONIC_1 }}
       MNEMONIC_2: ${{ vars.MNEMONIC_2 }}
-      PATH: "$PATH:$HOME/go/bin"
       
     # needs: generate-matrices
     strategy:
@@ -90,6 +89,8 @@ jobs:
   #     matrix:
   #       ${{ fromJSON(needs.generate-matrices.outputs.upgrade_versions) }}
     steps:
+      - name: Update PATH
+        run: echo "$HOME/go/bin" >> $GITHUB_PATH
       - name: Bypass the grub-efi-amd64-signed package
         run: sudo apt-mark hold grub-efi-amd64-signed
       - run: echo "Test upgrading ${{ vars.START_VERSION }} to release branch"
