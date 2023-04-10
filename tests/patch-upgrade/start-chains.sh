@@ -22,13 +22,13 @@ rm -rf $HOME_2
 $CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_1
 $CHAIN_BINARY config keyring-backend test --home $HOME_1
 $CHAIN_BINARY config broadcast-mode block --home $HOME_1
-$CHAIN_BINARY config node tcp://localhost:27001 --home $HOME_1
+$CHAIN_BINARY config node tcp://localhost:$VAL1_RPC_PORT --home $HOME_1
 $CHAIN_BINARY init $MONIKER_1 --chain-id $CHAIN_ID --home $HOME_1
 
 $CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_2
 $CHAIN_BINARY config keyring-backend test --home $HOME_2
 $CHAIN_BINARY config broadcast-mode block --home $HOME_2
-$CHAIN_BINARY config node tcp://localhost:27002 --home $HOME_2
+$CHAIN_BINARY config node tcp://localhost:$VAL1_RPC_PORT --home $HOME_2
 $CHAIN_BINARY init $MONIKER_2 --chain-id $CHAIN_ID --home $HOME_2
 
 # Create self-delegation accounts
@@ -87,7 +87,7 @@ toml set --toml-path $HOME_2/config/config.toml rpc.pprof_laddr "localhost:6062"
 toml set --toml-path $HOME_1/config/config.toml p2p.laddr "tcp://0.0.0.0:28001"
 toml set --toml-path $HOME_2/config/config.toml p2p.laddr "tcp://0.0.0.0:28002"
 
-# Set persistent peers in p2p2
+# Set persistent peers in p2p
 PEERS="$($CHAIN_BINARY tendermint show-node-id --home $HOME_2)@127.0.0.1:28002"
 toml set --toml-path $HOME_1/config/config.toml p2p.persistent_peers $PEERS
 
@@ -141,6 +141,6 @@ sudo systemctl enable $PROVIDER_SERVICE_2 --now
 # echo "***********************"
 
 echo "Waiting for chains to start and endpoints to become available..."
-sleep 45
+sleep 50
 
-sudo journalctl -u $PROVIDER_SERVICE_1 | tail -n 200
+sudo journalctl -u $PROVIDER_SERVICE_1
