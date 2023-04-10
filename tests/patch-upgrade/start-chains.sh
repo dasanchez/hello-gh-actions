@@ -100,7 +100,6 @@ cp $HOME_1/config/genesis.json $HOME_2/config/genesis.json
 
 echo "Setting up services..."
 
-sudo rm /etc/systemd/system/$PROVIDER_SERVICE_1
 sudo touch /etc/systemd/system/$PROVIDER_SERVICE_1
 echo "[Unit]"                               | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1
 echo "Description=Gaia service"       | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
@@ -115,7 +114,6 @@ echo ""                                     | sudo tee /etc/systemd/system/$PROV
 echo "[Install]"                            | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "WantedBy=multi-user.target"           | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 
-sudo rm /etc/systemd/system/$PROVIDER_SERVICE_2
 sudo touch /etc/systemd/system/$PROVIDER_SERVICE_2
 echo "[Unit]"                               | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2
 echo "Description=Gaia service"       | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
