@@ -100,8 +100,8 @@ cp $HOME_1/config/genesis.json $HOME_2/config/genesis.json
 
 echo "Setting up services..."
 
-rm /etc/systemd/system/$PROVIDER_SERVICE_1
-touch /etc/systemd/system/$PROVIDER_SERVICE_1
+sudo rm /etc/systemd/system/$PROVIDER_SERVICE_1
+sudo touch /etc/systemd/system/$PROVIDER_SERVICE_1
 echo "[Unit]"                               | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1
 echo "Description=Gaia service"       | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "After=network-online.target"          | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
@@ -115,8 +115,8 @@ echo ""                                     | sudo tee /etc/systemd/system/$PROV
 echo "[Install]"                            | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 echo "WantedBy=multi-user.target"           | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_1 -a
 
-rm /etc/systemd/system/$PROVIDER_SERVICE_2
-touch /etc/systemd/system/$PROVIDER_SERVICE_2
+sudo rm /etc/systemd/system/$PROVIDER_SERVICE_2
+sudo touch /etc/systemd/system/$PROVIDER_SERVICE_2
 echo "[Unit]"                               | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2
 echo "Description=Gaia service"       | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
 echo "After=network-online.target"          | sudo tee /etc/systemd/system/$PROVIDER_SERVICE_2 -a
@@ -142,6 +142,3 @@ sudo systemctl enable $PROVIDER_SERVICE_2 --now
 
 echo "Waiting for chains to start and endpoints to become available..."
 sleep 25
-
-cat /etc/systemd/system/$PROVIDER_SERVICE_1
-$CHAIN_BINARY status --home $HOME_1
