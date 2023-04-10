@@ -28,7 +28,7 @@ $CHAIN_BINARY init $MONIKER_1 --chain-id $CHAIN_ID --home $HOME_1
 $CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_2
 $CHAIN_BINARY config keyring-backend test --home $HOME_2
 $CHAIN_BINARY config broadcast-mode block --home $HOME_2
-$CHAIN_BINARY config node tcp://localhost:$VAL1_RPC_PORT --home $HOME_2
+$CHAIN_BINARY config node tcp://localhost:$VAL2_RPC_PORT --home $HOME_2
 $CHAIN_BINARY init $MONIKER_2 --chain-id $CHAIN_ID --home $HOME_2
 
 # Create self-delegation accounts
