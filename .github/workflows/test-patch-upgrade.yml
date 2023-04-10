@@ -114,6 +114,5 @@ jobs:
           python -m pip install requests toml-cli
       - name: Start chains
         run: tests/patch-upgrade/start-chains.sh
-      - run: sleep 25s
       - name: Happy path test - transactions
         run: tests/test-tx-fresh.sh
