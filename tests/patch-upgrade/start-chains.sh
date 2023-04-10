@@ -142,3 +142,5 @@ echo "Waiting for chains to start and endpoints to become available..."
 sleep 30
 
 sudo journalctl -u $PROVIDER_SERVICE_1
+
+$CHAIN_BINARY status --home $HOME_1
