@@ -82,6 +82,12 @@ jobs:
       MONIKER_2: ${{ vars.MONIKER_2 }}
       MNEMONIC_1: ${{ vars.MNEMONIC_1 }}
       MNEMONIC_2: ${{ vars.MNEMONIC_2 }}
+      DENOM: ${{ vars.DENOM }}
+      VAL_FUNDS: ${{ vars.VAL_FUNDS }}
+      VAL_STAKE: ${{ vars.VAL_STAKE }}
+      VOTING_PERIOD: ${{ vars.VOTING_PERIOD }}
+      VAL1_RPC_PORT: ${{ vars.VAL1_RPC_PORT }}
+      VAL2_RPC_PORT: ${{ vars.VAL2_RPC_PORT }}
       
     # needs: generate-matrices
     strategy:
