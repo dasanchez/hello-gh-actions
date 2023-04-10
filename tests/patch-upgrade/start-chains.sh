@@ -141,6 +141,6 @@ sudo systemctl enable $PROVIDER_SERVICE_2 --now
 # echo "***********************"
 
 echo "Waiting for chains to start and endpoints to become available..."
-sleep 50
+sleep 90
 
 sudo journalctl -u $PROVIDER_SERVICE_1
