@@ -72,6 +72,17 @@ jobs:
     environment: patch-upgrade-workflow
     env:
       START_VERSION: ${{ vars.START_VERSION }}
+      PROVIDER_SERVICE_1: ${{ vars.PROVIDER_SERVICE_1 }}
+      PROVIDER_SERVICE_2: ${{ vars.PROVIDER_SERVICE_2 }}
+      CHAIN_BINARY: ${{ vars.CHAIN_BINARY }}
+      HOME_1: ${{ vars.HOME_1 }}
+      HOME_2: ${{ vars.HOME_2 }}
+      CHAIN_ID: ${{ vars.CHAIN_ID }}
+      MONIKER_1: ${{ vars.MONIKER_1 }}
+      MONIKER_2: ${{ vars.MONIKER_2 }}
+      MNEMONIC_1: ${{ vars.MNEMONIC_1 }}
+      MNEMONIC_2: ${{ vars.MNEMONIC_2 }}
+      
     # needs: generate-matrices
     strategy:
       fail-fast: false

@@ -1,42 +1,38 @@
 #!/bin/bash
 # 1. Set up a two-validator provider chain.
 
-echo "The start version is $START_VERSION"
+# Install wget and jq
+sudo apt-get install curl jq wget -y
 
-# START_VERSION=$1
+# echo "Stopping services..."
+systemctl disable $PROVIDER_SERVICE_1 --now
+systemctl disable $PROVIDER_SERVICE_2 --now
 
-# # Install wget and jq
-# sudo apt-get install curl jq wget -y
+# Install Gaia binary
+CHAIN_BINARY_URL=https://github.com/cosmos/gaia/releases/download/$START_VERSION/gaiad-$START_VERSION-linux-amd64
+echo "Installing Gaia..."
+wget $CHAIN_BINARY_URL -O $HOME/go/bin/$CHAIN_BINARY
+chmod +x $HOME/go/bin/$CHAIN_BINARY
 
-# # echo "Stopping services..."
-# systemctl disable $PROVIDER_SERVICE_1 --now
-# systemctl disable $PROVIDER_SERVICE_2 --now
+# Initialize home directories
+echo "Initializing node homes..."
+rm -rf $HOME_1
+rm -rf $HOME_2
+$CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_1
+$CHAIN_BINARY config keyring-backend test --home $HOME_1
+$CHAIN_BINARY config broadcast-mode block --home $HOME_1
+$CHAIN_BINARY config node tcp://localhost:27001 --home $HOME_1
+$CHAIN_BINARY init $MONIKER_1 --chain-id $CHAIN_ID --home $HOME_1
 
-# # Install Gaia binary
-# CHAIN_BINARY_URL=https://github.com/cosmos/gaia/releases/download/$START_VERSION/gaiad-$START_VERSION-linux-amd64
-# echo "Installing Gaia..."
-# wget $CHAIN_BINARY_URL -O $HOME/go/bin/$CHAIN_BINARY
-# chmod +x $HOME/go/bin/$CHAIN_BINARY
-
-# # Initialize home directories
-# echo "Initializing node homes..."
-# rm -rf $HOME_1
-# rm -rf $HOME_2
-# $CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_1
-# $CHAIN_BINARY config keyring-backend test --home $HOME_1
-# $CHAIN_BINARY config broadcast-mode block --home $HOME_1
-# $CHAIN_BINARY config node tcp://localhost:27001 --home $HOME_1
-# $CHAIN_BINARY init $MONIKER_1 --chain-id $CHAIN_ID --home $HOME_1
-
-# $CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_2
-# $CHAIN_BINARY config keyring-backend test --home $HOME_2
-# $CHAIN_BINARY config broadcast-mode block --home $HOME_2
-# $CHAIN_BINARY config node tcp://localhost:27002 --home $HOME_2
-# $CHAIN_BINARY init $MONIKER_2 --chain-id $CHAIN_ID --home $HOME_2
+$CHAIN_BINARY config chain-id $CHAIN_ID --home $HOME_2
+$CHAIN_BINARY config keyring-backend test --home $HOME_2
+$CHAIN_BINARY config broadcast-mode block --home $HOME_2
+$CHAIN_BINARY config node tcp://localhost:27002 --home $HOME_2
+$CHAIN_BINARY init $MONIKER_2 --chain-id $CHAIN_ID --home $HOME_2
 
 # Create self-delegation accounts
-# echo $MNEMONIC_1 | $CHAIN_BINARY keys add $MONIKER_1 --keyring-backend test --home $HOME_1 --recover
-# echo $MNEMONIC_2 | $CHAIN_BINARY keys add $MONIKER_2 --keyring-backend test --home $HOME_1 --recover
+echo $MNEMONIC_1 | $CHAIN_BINARY keys add $MONIKER_1 --keyring-backend test --home $HOME_1 --recover
+echo $MNEMONIC_2 | $CHAIN_BINARY keys add $MONIKER_2 --keyring-backend test --home $HOME_1 --recover
 
 # # Update genesis file with right denom
 # sed -i s%stake%$DENOM%g $HOME_1/config/genesis.json
