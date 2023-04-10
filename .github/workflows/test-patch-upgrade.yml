@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print starting version
-        run: echo ${{ vars.START_VERSION }}
+        run: echo "test"
   # generate-matrices:
   #   runs-on: ubuntu-22.04
   #   steps:
