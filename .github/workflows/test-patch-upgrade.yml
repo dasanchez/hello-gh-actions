@@ -97,6 +97,7 @@ jobs:
   #     matrix:
   #       ${{ fromJSON(needs.generate-matrices.outputs.upgrade_versions) }}
     steps:
+      - run: whoami
       - name: Update PATH
         run: echo "$HOME/go/bin" >> $GITHUB_PATH
       - name: Bypass the grub-efi-amd64-signed package
