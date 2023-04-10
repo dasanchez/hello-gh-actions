@@ -143,4 +143,5 @@ sudo systemctl enable $PROVIDER_SERVICE_2 --now
 echo "Waiting for chains to start and endpoints to become available..."
 sleep 25
 
+cat /etc/systemd/system/$PROVIDER_SERVICE_1
 $CHAIN_BINARY status --home $HOME_1
