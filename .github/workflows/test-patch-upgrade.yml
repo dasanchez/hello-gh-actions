@@ -88,7 +88,9 @@ jobs:
       VOTING_PERIOD: ${{ vars.VOTING_PERIOD }}
       VAL1_RPC_PORT: ${{ vars.VAL1_RPC_PORT }}
       VAL2_RPC_PORT: ${{ vars.VAL2_RPC_PORT }}
-      
+      WALLET_1: ${{ vars.WALLET_1 }}
+      WALLET_2: ${{ vars.WALLET_2 }}
+
     # needs: generate-matrices
     strategy:
       fail-fast: false
@@ -113,3 +115,5 @@ jobs:
       - name: Start chains
         run: |
           tests/patch-upgrade/start-chains.sh
+      - name: Happy path test - transactions
+          tests/test-tx-fresh.sh
