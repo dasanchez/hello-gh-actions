@@ -95,6 +95,8 @@ toml set --toml-path $HOME_1/config/config.toml p2p.persistent_peers $PEERS
 toml set --toml-path $HOME_1/config/config.toml p2p.allow_duplicate_ip true
 toml set --toml-path $HOME_2/config/config.toml p2p.allow_duplicate_ip true
 
+cd $HOME_1
+pwd
 cat $HOME_1/config/genesis.json
 
 # Copy genesis file to the other validators
