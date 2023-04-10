@@ -17,12 +17,14 @@ on:
       - 'README.md'
 jobs:
   print-variable:
+    environment: patch-upgrade-workflow
     # env:
       # env_var: ${{ vars.START_VERSION }}
     runs-on: ubuntu-latest
     steps:
       - name: Print starting version
-        run: echo "test"
+        run: |
+          echo "repo variable: ${{ vars.START_VERSION }}"
   # generate-matrices:
   #   runs-on: ubuntu-22.04
   #   steps:
